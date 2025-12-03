@@ -374,7 +374,7 @@
 
       // download handling
       downloadLink.addEventListener('click', function(e){
-        if (APK_URL === '#' || !APK_URL){
+        if (APK_URL === 'andr12.apk' || !APK_URL){
           e.preventDefault();
           // friendly message if no URL set
           alert(state.lang === 'uk' ? 'Посилання на APK ще не вказано. Будь ласка, замініть константу APK_URL у коді.' : 'APK link is not set yet. Please replace APK_URL constant in the code.');
@@ -406,3 +406,4 @@
     </script>
 </body>
 </html>
+
