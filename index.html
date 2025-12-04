@@ -42,6 +42,11 @@
 
     @media(max-width:720px){.right{width:100%}}
 
+    /* Fix text color inheritance */
+    body, .card, .description, .download-area, .big-download, .btn, .meta, .title, .subtitle, h2, p, li {
+      color: var(--text);
+    }
+
     /* accessibility focus */
     button:focus, a:focus{outline:3px solid rgba(0,102,255,0.18);outline-offset:2px}
   </style>
