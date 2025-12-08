@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec58a1e8bbfd6746a05b8790a8ece53, type: 3}
+  m_Name: _DataStorage
+  m_EditorClassIdentifier: 
+  avarageMark: 0
+  updateTime: 0
+  LastMark: -1
+  versionTests: 0
+  avaregeTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  avaregeTimeCR: 0000000000000000000000000000000000000000
+  testsSC: []
+  activeTheme: 1
+  messages: []
+  levels:
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
