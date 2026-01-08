@@ -41,13 +41,10 @@
     footer{margin-top:18px;font-size:13px;color:var(--muted)}
 
     @media(max-width:720px){.right{width:100%}}
-
-    /* Fix text color inheritance */
     body, .card, .description, .download-area, .big-download, .btn, .meta, .title, .subtitle, h2, p, li {
       color: var(--text);
     }
 
-    /* accessibility focus */
     button:focus, a:focus{outline:3px solid rgba(0,102,255,0.18);outline-offset:2px}
   </style>
 </head>
@@ -117,14 +114,11 @@
 
   <script>
     (function(){
-      // --- Configuration ---
-      const APK_URL = 'https://drive.google.com/uc?export=download&id=1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD'; // direct-download link constructed from the Drive URL you provided
+      const APK_URL = 'https://drive.google.com/uc?export=download&id=1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD';
       const APP_VERSION = '1.0.0';
-      // Source: Google Drive link provided by user
-      // Original view URL: https://drive.google.com/file/d/1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD/view?usp=drive_link
+      // URL: https://drive.google.com/file/d/1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD/view?usp=drive_link
       const APP_SIZE = '≈45 MB';
 
-      // Texts for languages
       const TEXTS = {
         uk:{
           siteTitle: 'Освітня AI платформа',
@@ -152,7 +146,6 @@
         }
       };
 
-      // Elements
       const app = document.getElementById('app');
       const btnUK = document.getElementById('btn-uk');
       const btnEN = document.getElementById('btn-en');
@@ -160,7 +153,6 @@
       const downloadLink = document.getElementById('download-link');
       const downloadBtnText = document.getElementById('download-btn-text');
 
-      // text nodes
       const brandTitle = document.getElementById('brand-title');
       const brandSub = document.getElementById('brand-sub');
       const descTitle = document.getElementById('desc-title');
@@ -171,7 +163,6 @@
       const legal = document.getElementById('legal');
       const appVersion = document.getElementById('app-version');
 
-      // init
       let state = {
         lang: localStorage.getItem('site_lang') || navigator.language.startsWith('en') ? 'en' : 'uk',
         theme: localStorage.getItem('site_theme') || 'light'
@@ -184,7 +175,6 @@
         brandSub.textContent = t.siteSub;
         descTitle.textContent = t.projectTitle;
         descText.textContent = t.projectDesc;
-        // features
         featuresEl.innerHTML = '';
         t.features.forEach(f=>{ const li = document.createElement('li'); li.textContent = f; featuresEl.appendChild(li); });
 
@@ -195,11 +185,9 @@
 
         themeToggle.textContent = state.theme === 'light' ? t.themeLight : t.themeDark;
 
-        // aria
         btnUK.setAttribute('aria-selected', state.lang==='uk');
         btnEN.setAttribute('aria-selected', state.lang==='en');
 
-        // update lang label
         document.getElementById('lang-label').textContent = state.lang === 'uk' ? 'Мова' : 'Language';
       }
 
@@ -207,34 +195,26 @@
         app.setAttribute('data-theme', state.theme);
         localStorage.setItem('site_theme', state.theme);
         themeToggle.setAttribute('aria-pressed', state.theme==='dark');
-        // update theme text based on language strings
         const t = TEXTS[state.lang];
         themeToggle.textContent = state.theme === 'light' ? t.themeLight : t.themeDark;
       }
 
-      // events
       btnUK.addEventListener('click', ()=>{ state.lang='uk'; localStorage.setItem('site_lang','uk'); renderLang(); });
       btnEN.addEventListener('click', ()=>{ state.lang='en'; localStorage.setItem('site_lang','en'); renderLang(); });
 
       themeToggle.addEventListener('click', ()=>{ state.theme = state.theme === 'light' ? 'dark' : 'light'; renderTheme(); });
 
-      // download handling
       downloadLink.addEventListener('click', function(e){
         if (APK_URL === '#' || !APK_URL){
           e.preventDefault();
-          // friendly message if no URL set
           alert(state.lang === 'uk' ? 'Посилання на APK ще не вказано. Будь ласка, замініть константу APK_URL у коді.' : 'APK link is not set yet. Please replace APK_URL constant in the code.');
           return;
         }
-        // set href dynamically so we can keep a placeholder in source
         this.href = APK_URL;
-        // analytics hook: you may send fetch to your analytics here
       });
 
-      // version
       appVersion.textContent = APP_VERSION;
 
-      // privacy & terms (example: open modal or external links)
       document.getElementById('open-privacy').addEventListener('click', ()=>{
         const url = '#privacy'; // replace with real link
         window.open(url,'_blank');
@@ -244,7 +224,6 @@
         window.open(url,'_blank');
       });
 
-      // initial render
       renderLang();
       renderTheme();
 
@@ -252,3 +231,4 @@
   </script>
 </body>
 </html>
+
