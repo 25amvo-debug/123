@@ -114,9 +114,8 @@
 
   <script>
     (function(){
-      const APK_URL = 'https://drive.google.com/uc?export=download&id=1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD';
+      const APK_URL = 'https://drive.google.com/file/d/1ptBRBd39T5DYGgw8-pDvorqO7JEqXrtl/view?usp=sharing';
       const APP_VERSION = '1.0.0';
-      // URL: https://drive.google.com/file/d/1KbMJVDQ-BzHURnLsglQmLmd03kreKTyD/view?usp=drive_link
       const APP_SIZE = '≈45 MB';
 
       const TEXTS = {
@@ -207,7 +206,7 @@
       downloadLink.addEventListener('click', function(e){
         if (APK_URL === '#' || !APK_URL){
           e.preventDefault();
-          alert(state.lang === 'uk' ? 'Посилання на APK ще не вказано. Будь ласка, замініть константу APK_URL у коді.' : 'APK link is not set yet. Please replace APK_URL constant in the code.');
+          alert(state.lang === 'uk' ? 'На даний момент посилання відстутнє' : 'The link is currently unavailable.');
           return;
         }
         this.href = APK_URL;
@@ -216,7 +215,7 @@
       appVersion.textContent = APP_VERSION;
 
       document.getElementById('open-privacy').addEventListener('click', ()=>{
-        const url = '#privacy'; // replace with real link
+        const url = '#privacy'; 
         window.open(url,'_blank');
       });
       document.getElementById('open-terms').addEventListener('click', ()=>{
@@ -231,4 +230,5 @@
   </script>
 </body>
 </html>
+
 
