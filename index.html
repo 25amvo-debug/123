@@ -1,175 +1,235 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Завантажити</title>
-    <style>
-        :root {
-            --bg-dark: #1A1A1A;
-            --card-dark: #282828;
-            --primary: #FFCF6F;
-            --secondary: #A58755;
-            --accent: #3C4C37;
-            --text-light: #F0F0F0;
-            --text-dark: #1A1A1A;
-            
-            --bg-white: #FFFFFF;
-            --card-white: #F5F5F5;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Освітня платформа — Завантажити APK</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#ffffff; --text:#0b1220; --muted:#5b6570; --accent:#0066ff;
+    }
+    [data-theme="dark"]{ --bg:#0b0f14; --card:#0f1720; --text:#e6eef8; --muted:#9aa6b2; --accent:#4ea1ff; }
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background 0.3s, color 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:transparent;color:var(--text)}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px;background:var(--bg)}
+    .card{width:100%;max-width:880px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.08);background-color:var(--card)}
 
-        body.dark-mode {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
+    .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7fd1ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .title{font-size:20px;font-weight:700}
+    .subtitle{font-size:13px;color:var(--muted)}
 
-        body.light-mode {
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-        }
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{border:0;padding:8px 12px;border-radius:10px;cursor:pointer;background:transparent;color:var(--text);font-weight:600}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:999px;background:rgba(0,0,0,0.04)}
 
-        .container {
-            max-width: 600px;
-            width: 90%;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: background 0.3s;
-        }
+    .main{display:flex;gap:24px;margin-top:20px;flex-wrap:wrap}
+    .left{flex:1;min-width:260px}
+    .right{width:320px;min-width:260px}
 
-        .dark-mode .container { background-color: var(--card-dark); }
-        .light-mode .container { background-color: var(--card-white); }
+    .description{background:linear-gradient(180deg,transparent,rgba(0,0,0,0.01));padding:18px;border-radius:12px}
+    .download-area{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;padding:22px;border-radius:12px}
 
-        .controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+    .big-download{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 26px;border-radius:14px;font-size:18px;font-weight:800;border:0;cursor:pointer;background:var(--accent);color:white;box-shadow:0 8px 18px rgba(0,0,0,0.12);text-decoration:none}
+    .meta{font-size:13px;color:var(--muted)}
 
-        button.tool-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+    .lang-switch{display:flex;gap:6px;background:transparent;border-radius:8px;padding:6px}
+    .lang-switch button{padding:6px 10px;border-radius:8px;border:0;background:rgba(0,0,0,0.04);cursor:pointer;color:var(--text);}
 
-        .app-header {
-            margin-bottom: 30px;
-        }
+    footer{margin-top:18px;font-size:13px;color:var(--muted)}
 
-        .app-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--primary);
-            border-radius: 22%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            box-shadow: 0 5px 15px rgba(255, 207, 111, 0.3);
-        }
+    @media(max-width:720px){.right{width:100%}}
+    body, .card, .description, .download-area, .big-download, .btn, .meta, .title, .subtitle, h2, p, li {
+      color: var(--text);
+    }
 
-        h1 { margin: 0; font-size: 24px; }
-
-        .description {
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: var(--secondary);
-        }
-
-        .light-mode .description { color: #555; }
-
-        .download-btn {
-            background-color: var(--primary);
-            color: var(--text-dark);
-            text-decoration: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            display: inline-block;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            background-color: #e6ba64;
-        }
-    </style>
+    button:focus, a:focus{outline:3px solid rgba(0,102,255,0.18);outline-offset:2px}
+  </style>
 </head>
-<body class="dark-mode">
-
-    <div class="container">
+<body>
+  <div class="wrap" id="app" data-theme="light">
+    <main class="card" role="main">
+      <div class="top">
+        <div class="brand">
+          <div class="logo">AI</div>
+          <div>
+            <div class="title" id="brand-title">Освітня AI платформа</div>
+            <div class="subtitle" id="brand-sub">Інтерактивна навчальна система на основі нейронної мережі</div>
+          </div>
+        </div>
         <div class="controls">
-            <button class="tool-btn" onclick="toggleLanguage()" id="langBtn">EN</button>
-            <button class="tool-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+          <div class="pill" aria-hidden>
+            <span id="lang-label">Мова</span>
+            <div class="lang-switch" role="tablist" aria-label="Мова сайту">
+              <button id="btn-uk" data-lang="uk" aria-selected="true">Укр</button>
+              <button id="btn-en" data-lang="en">EN</button>
+            </div>
+          </div>
+          <button class="btn" id="theme-toggle" aria-pressed="false">Тема: Світла</button>
         </div>
+      </div>
 
-        <div class="app-header">
-            <div class="app-icon"><img src="icon.png" width="80"></div>
-            <h1 id="appTitle">Neuro+</h1>
-        </div>
+      <section class="main">
+        <section class="left">
+          <div class="description" id="description">
+            <h2 id="desc-title">Про проєкт</h2>
+            <p id="desc-text">Це інтерактивна освітня платформа, що використовує нейронну мережу для персоналізованих курсів та адаптивних вправ. Додаток доступний у вигляді APK для Android-пристроїв.</p>
+            <ul id="features">
+              <li>Глибокий аналіз персонального рівня учня</li>
+              <li>Інтерактивні завдання з миттєвим аналізом помилок</li>
+              <li>Персоналізовані курси, що підлаштовуються під користувача</li>
+            </ul>
+            
+          </div>
 
-        <div class="description">
-            <p id="appDesc">  Новітня українська освітня платформа, що використовуючи нейронну мережу спроможна адаптувати освітній контент під персональні потреби користувачів. Завантажини на андроід АПК файлом </p>
-        </div>
+          
+        </section>
 
-        <a href="https://drive.google.com/file/d/11TbJne1yN9IzpWAa78PcnYJbBFQt1DSv/view?usp=sharing" class="download-btn" id="downloadBtn">Завантажити APK</a>
-    </div>
+        <aside class="right">
+          <div class="download-area" role="region" aria-label="Завантаження APK">
+            <div style="text-align:center">
+              <div style="font-weight:700;font-size:16px" id="download-title">Завантажити мобільний додаток</div>
+              <div class="meta" id="download-sub">Підтримка Android 8.0+ • ~45 MB</div>
+            </div>
 
-    <script>
-        let currentLang = 'ua';
-        const translations = {
-            ua: {
-                title: "Neuro+",
-                desc: "Новітня українська освітня платформа, що використовуючи нейронну мережу спроможна адаптувати освітній контент під персональні потреби користувачів. Завантажини на андроід АПК файлом.",
-                download: "Завантажити APK",
-                lang: "EN"
-            },
-            en: {
-                title: "Neuro+",
-                desc: "The newest Ukrainian educational platform, which, using a neural network, is able to adapt educational content to the personal needs of users. Download for Android APK file.",
-                download: "Download APK",
-                lang: "UA"
-            }
-        };
+            <!-- Replace href with real apk link -->
+            <a id="download-link" class="big-download" href="#" download="eduai.apk" rel="noopener noreferrer" aria-label="Завантажити APK файл">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden style="opacity:0.95"><path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="download-btn-text">Завантажити APK</span>
+            </a>
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ua' ? 'en' : 'ua';
-            document.getElementById('appTitle').innerText = translations[currentLang].title;
-            document.getElementById('appDesc').innerText = translations[currentLang].desc;
-            document.getElementById('downloadBtn').innerText = translations[currentLang].download;
-            document.getElementById('langBtn').innerText = translations[currentLang].lang;
-            document.documentElement.lang = currentLang;
+            
+
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <noscript>
+    <div style="position:fixed;left:0;right:0;bottom:0;background:#ffefc5;padding:12px;text-align:center">Для повної роботи сайту увімкніть JavaScript.</div>
+  </noscript>
+
+  <script>
+    (function(){
+      const APK_URL = 'https://drive.google.com/file/d/1OER9sED5er5B841JakSM8dJGLOKxZup9/view?usp=sharing';
+      const APP_VERSION = '1.0.0';
+      const APP_SIZE = '≈45 MB';
+
+      const TEXTS = {
+        uk:{
+          siteTitle: 'Освітня AI платформа',
+          siteSub: 'Інтерактивна навчальна система на основі нейронної мережі',
+          projectTitle: 'Про проєкт',
+          projectDesc: 'Це інтерактивна освітня платформа, що використовує нейронну мережу для персоналізованих курсів та адаптивних вправ. Додаток доступний у вигляді APK для Android-пристроїв.',
+          features: ['Глибокий аналіз персонального рівня учня','Інтерактивні завдання з миттєвим аналізом помилок','Персоналізовані курси, що підлаштовуються під користувача'],
+          downloadTitle: 'Завантажити мобільний додаток',
+          downloadBtn: 'Завантажити APK',
+          downloadSub: 'Підтримка Android 8.0+ • ' + APP_SIZE,
+          legal: 'Натискаючи «Завантажити», ви погоджуєтесь з умовами користування та політикою конфіденційності.',
+          themeLight: 'Тема: Світла', themeDark: 'Тема: Темна'
+        },
+        en:{
+          siteTitle: 'Educational AI Platform',
+          siteSub: 'Interactive learning system powered by a neural network',
+          projectTitle: 'About the project',
+          projectDesc: 'It is an interactive educational platform that uses neural networks for personalized courses and adaptive exercises. The application is available as an APK for Android devices.',
+          features: ['In-depth analysis of the students personal level','Interactive exercises with instant error analysis','Personalized courses that adapt to the learner'],
+          downloadTitle: 'Download mobile app',
+          downloadBtn: 'Download APK',
+          downloadSub: 'Supports Android 8.0+ • ' + APP_SIZE,
+          legal: 'By clicking "Download" you agree to the Terms of Use and Privacy Policy.',
+          themeLight: 'Theme: Light', themeDark: 'Theme: Dark'
         }
+      };
 
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeBtn');
-            if (body.classList.contains('dark-mode')) {
-                body.classList.replace('dark-mode', 'light-mode');
-                btn.innerText = '🌙';
-            } else {
-                body.classList.replace('light-mode', 'dark-mode');
-                btn.innerText = '☀️';
-            }
+      const app = document.getElementById('app');
+      const btnUK = document.getElementById('btn-uk');
+      const btnEN = document.getElementById('btn-en');
+      const themeToggle = document.getElementById('theme-toggle');
+      const downloadLink = document.getElementById('download-link');
+      const downloadBtnText = document.getElementById('download-btn-text');
+
+      const brandTitle = document.getElementById('brand-title');
+      const brandSub = document.getElementById('brand-sub');
+      const descTitle = document.getElementById('desc-title');
+      const descText = document.getElementById('desc-text');
+      const featuresEl = document.getElementById('features');
+      const downloadTitle = document.getElementById('download-title');
+      const downloadSub = document.getElementById('download-sub');
+      const legal = document.getElementById('legal');
+      const appVersion = document.getElementById('app-version');
+
+      let state = {
+        lang: localStorage.getItem('site_lang') || navigator.language.startsWith('en') ? 'en' : 'uk',
+        theme: localStorage.getItem('site_theme') || 'light'
+      };
+
+      function renderLang(){
+        const t = TEXTS[state.lang];
+        document.documentElement.lang = state.lang === 'uk' ? 'uk' : 'en';
+        brandTitle.textContent = t.siteTitle;
+        brandSub.textContent = t.siteSub;
+        descTitle.textContent = t.projectTitle;
+        descText.textContent = t.projectDesc;
+        featuresEl.innerHTML = '';
+        t.features.forEach(f=>{ const li = document.createElement('li'); li.textContent = f; featuresEl.appendChild(li); });
+
+        downloadTitle.textContent = t.downloadTitle;
+        downloadBtnText.textContent = t.downloadBtn;
+        downloadSub.textContent = t.downloadSub;
+        legal.textContent = t.legal;
+
+        themeToggle.textContent = state.theme === 'light' ? t.themeLight : t.themeDark;
+
+        btnUK.setAttribute('aria-selected', state.lang==='uk');
+        btnEN.setAttribute('aria-selected', state.lang==='en');
+
+        document.getElementById('lang-label').textContent = state.lang === 'uk' ? 'Мова' : 'Language';
+      }
+
+      function renderTheme(){
+        app.setAttribute('data-theme', state.theme);
+        localStorage.setItem('site_theme', state.theme);
+        themeToggle.setAttribute('aria-pressed', state.theme==='dark');
+        const t = TEXTS[state.lang];
+        themeToggle.textContent = state.theme === 'light' ? t.themeLight : t.themeDark;
+      }
+
+      btnUK.addEventListener('click', ()=>{ state.lang='uk'; localStorage.setItem('site_lang','uk'); renderLang(); });
+      btnEN.addEventListener('click', ()=>{ state.lang='en'; localStorage.setItem('site_lang','en'); renderLang(); });
+
+      themeToggle.addEventListener('click', ()=>{ state.theme = state.theme === 'light' ? 'dark' : 'light'; renderTheme(); });
+
+      downloadLink.addEventListener('click', function(e){
+        if (APK_URL === '#' || !APK_URL){
+          e.preventDefault();
+          alert(state.lang === 'uk' ? 'На даний момент посилання відстутнє' : 'The link is currently unavailable.');
+          return;
         }
-    </script>
+        this.href = APK_URL;
+      });
+
+      appVersion.textContent = APP_VERSION;
+
+      document.getElementById('open-privacy').addEventListener('click', ()=>{
+        const url = '#privacy'; 
+        window.open(url,'_blank');
+      });
+      document.getElementById('open-terms').addEventListener('click', ()=>{
+        const url = '#terms';
+        window.open(url,'_blank');
+      });
+
+      renderLang();
+      renderTheme();
+
+    })();
+  </script>
 </body>
 </html>
+
+
+
